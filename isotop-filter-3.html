@@ -15,9 +15,9 @@
             font-family: sans-serif;
         }
 
-        /* ---- button ---- */
+        /* ---- p ---- */
 
-        .button {
+        .p {
             display: inline-block;
             padding: 10px 18px;
             margin-bottom: 10px;
@@ -31,23 +31,23 @@
             cursor: pointer;
         }
 
-        .button:hover {
+        .p:hover {
             background-color: #8CF;
             color: #222;
         }
 
-        .button:active,
-        .button.is-checked {
+        .p:active,
+        .p.is-checked {
             background-color: #28F;
         }
 
-        .button.is-checked {
+        .p.is-checked {
             color: white;
 
         }
 
 
-        /* ---- button-group ---- */
+        /* ---- p-group ---- */
 
 
         /* ---- isotope ---- */
@@ -81,7 +81,7 @@
             background: #0F8;
         }
 
-        .filter-count {
+        .filter-count-Wrapper {
             font-size: 22px;
         }
     </style>
@@ -90,44 +90,45 @@
 <body>
     <h1>Isotope - filter count</h1>
 
-    <div class="button-group filters-button-group">
-        <button class="button is-checked" data-filter="*">show all</button>
-        <button class="button" data-filter=".metal">metal</button>
-        <button class="button" data-filter=".transition">transition</button>
-
-
-        <p class="filter-count"></p>
-
-        <div class="grid">
-            <div class="element-item metal " data-category="transition">
-                <p class="symbol">1 Hg</p>
-            </div>
-            <div class="element-item transition " data-category="metalloid">
-                <p class="symbol">2 Te</p>
-            </div>
-            <div class="element-item transition metal " data-category="post-transition">
-                <p class="symbol">3 Bi</p>
-
-            </div>
-
-            <div class="element-item metal " data-category="transition">
-                <p class="symbol">4 Au</p>
-            </div>
+    <div class="button-group" filter-button-group="">
+        <p class="p is-checked" data-filter="*">show all</p>
+        <p class="p" data-filter=".metal">metal</p>
+        <p class="p" data-filter=".transition">transition</p>
+    </div>
 
 
 
+    <p class="filter-count-Wrapper" filter-count="">8 items</p>
+
+    <div class="gridhd" data-list="">
+
+        <div class="element-item metal " data-category="transition">
+            <p class="symbol">1 Hg</p>
+        </div>
+
+        <div class="element-item transition " data-category="metalloid">
+            <p class="symbol">2 Te</p>
+        </div>
+
+        <div class="element-item transition metal " data-category="post-transition">
+            <p class="symbol">3 Bi</p>
 
         </div>
 
+        <div class="element-item metal " data-category="transition">
+            <p class="symbol">4 Au</p>
+        </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    </div>
 
 
-        <script src="https://5gw2pk.csb.app/isotop-filter-count.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <script src="https://5gw2pk.csb.app/isotop-filter-count-3.js"></script>
 </body>
 
 </html>
