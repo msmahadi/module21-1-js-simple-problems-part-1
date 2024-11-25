@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .filter-controls {
+            margin-bottom: 20px;
+        }
+
+        .filter-controls input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .filter-controls label {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- সার্চ ইনপুট -->
+    <input type="text" placeholder="Search..." data-search>
+
+    <!-- রেডিও বাটন ক্যাটেগরি ফিল্টার -->
+    <div class="filter-controls">
+        <label>
+            <input type="radio" name="category" value="all" checked> All
+        </label>
+        <label>
+            <input type="radio" name="category" value="men's clothing"> Men's Clothing
+        </label>
+        <label>
+            <input type="radio" name="category" value="jewelery"> Jewelery
+        </label>
+        <label>
+            <input type="radio" name="category" value="electronics"> Electronics
+        </label>
+        <label>
+            <input type="radio" name="category" value="women's clothing"> Women's Clothing
+        </label>
+    </div>
+
+    <!-- রিসেট বাটন -->
+    <button data-reset>Reset Filters</button>
+
+    <!-- কার্ড গ্রিড যেখানে API থেকে ডেটা যোগ হবে -->
+    <div class="grid" id="productGrid">
+        <!-- প্রতিটি প্রোডাক্টের জন্য প্রাথমিক কাঠামো -->
+        <div class="card" data-template data-item data-category="Category 1">
+            <h3 data-title></h3>
+            <img src="" alt="" data-thumbnail>
+
+            <p>Description: <span data-description></span></p>
+            <p>Price: <span data-price></span></p>
+            <p><span data-category></span></p>
+        </div>
+    </div>
+
+    <!-- No items found বার্তা -->
+    <div class="no-items" data-no-items>No items found</div>
+
+    <!-- MixItUp JS লাইব্রেরি -->
+    <script src="https://cdn.jsdelivr.net/npm/mixitup@3/dist/mixitup.min.js"></script>
+
+    <!-- JS ফাইল লিংক -->
+    <script>
+        // API থেকে ডেটা ফেচ করার জন্য async ফাংশন
+        async function fetchProducts() {
+            try {
+                // API থেকে ডেটা ফেচ করা
+                const response = await fetch('https://fakestoreapi.com/products');
+                const data = await response.json();
+
+                // প্রোডাক্ট গ্রিড এবং টেমপ্লেট রেফারেন্স
+                const productGrid = document.getElementById("productGrid");
+                const template = document.querySelector("[data-template]");
+
+                // টেমপ্লেট ক্লোন করে প্রতিটি প্রোডাক্টের জন্য কার্ড তৈরি করা
+                data.forEach((product) => {
+                    const card = template.cloneNode(true);
+                    card.removeAttribute("data-template"); // টেমপ্লেট অ্যাট্রিবিউট রিমুভ করা
+                    card.setAttribute("data-category", product.category.toLowerCase()); // ক্যাটেগরি সেট করা
+
+                    // ডেটা বসানো
+                    card.querySelectorAll("[data-title]").forEach((titleEl) => {
+                        titleEl.textContent = product.title;
+                    });
+                    card.querySelectorAll("[data-category]").forEach((categoryEl) => {
+                        categoryEl.textContent = product.category;
+                    });
+                    card.querySelectorAll("[data-thumbnail]").forEach((thumbnailEl) => {
+                        thumbnailEl.setAttribute('src', product.image);
+                        thumbnailEl.setAttribute('alt', product.title);
+                    });
+                    card.querySelectorAll("[data-description]").forEach((descEl) => {
+                        descEl.textContent = product.description;
+                    });
+                    card.querySelectorAll("[data-price]").forEach((priceEl) => {
+                        priceEl.textContent = `$${product.price}`;
+                    });
+
+                    // নতুন কার্ড গ্রিডে যোগ করা
+                    productGrid.appendChild(card);
+                });
+
+                // টেমপ্লেট লুকানো রাখা
+                template.style.display = "none";
+
+                // MixItUp ইন্টিগ্রেশন
+                const mixer = mixitup('#productGrid', {
+                    selectors: {
+                        target: '.card'
+                    },
+                    animation: {
+                        duration: 300
+                    }
+                });
+
+
+
+                // রেডিও বাটন ফিল্টার
+                const radioButtons = document.querySelectorAll('[name="category"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', function () {
+                        const value = this.value === 'all' ? 'all' : `[data-category="${this.value}"]`;
+                        mixer.filter(value);
+                    });
+                });
+
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
+        }
+
+        // ফেচ ফাংশন কল করা
+        fetchProducts();
+    </script>
+
+</body>
+
+</html>
