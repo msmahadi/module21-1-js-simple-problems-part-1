@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        /* ---- button ---- */
+
+        .button {
+            display: inline-block;
+            padding: 10px 18px;
+            margin-bottom: 10px;
+            background: #EEE;
+            border: none;
+            border-radius: 7px;
+            background-image: linear-gradient(to bottom, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.2));
+            color: #222;
+            font-family: sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #8CF;
+            color: #222;
+        }
+
+        .button:active,
+        .button.is-checked {
+            background-color: #28F;
+        }
+
+        .button.is-checked {
+            color: white;
+
+        }
+
+
+        /* ---- button-group ---- */
+
+
+        /* ---- isotope ---- */
+
+        .grid {
+            border: 1px solid #333;
+        }
+
+
+
+        /* ---- .element-item ---- */
+
+        .element-item {
+            position: relative;
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            padding: 10px;
+            background: #888;
+            color: #262524;
+        }
+
+
+        .element-item .symbol {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .element-item.transition {
+            background: #0F8;
+        }
+
+        .filter-count {
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Isotope - filter count</h1>
+
+    <div class="button-group filters-button-group">
+        <button class="button is-checked" data-filter="*">show all</button>
+        <button class="button" data-filter=".metal">metal</button>
+        <button class="button" data-filter=".transition">transition</button>
+
+
+        <p class="filter-count"></p>
+
+        <div class="grid">
+            <div class="element-item metal " data-category="transition">
+                <p class="symbol">1 Hg</p>
+            </div>
+            <div class="element-item transition " data-category="metalloid">
+                <p class="symbol">2 Te</p>
+            </div>
+            <div class="element-item transition metal " data-category="post-transition">
+                <p class="symbol">3 Bi</p>
+
+            </div>
+
+            <div class="element-item metal " data-category="transition">
+                <p class="symbol">4 Au</p>
+            </div>
+
+
+
+
+        </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+
+        <script src="https://5gw2pk.csb.app/isotop-filter-count.js"></script>
+</body>
+
+</html>
