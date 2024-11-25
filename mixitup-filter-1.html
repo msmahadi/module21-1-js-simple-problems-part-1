@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MixItUp Filter</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* General Reset */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        /* Filter Buttons */
+        .controls {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .controls button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Card Container */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .mix {
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="controls">
+        <button type="button" data-filter="all">Show All</button>
+        <button type="button" data-filter=".category-a">Category A</button>
+        <button type="button" data-filter=".category-b">Category B</button>
+        <button type="button" data-filter=".category-c">Category C</button>
+    </div>
+
+    <div class="container">
+        <div class="mix category-a">Card 1</div>
+        <div class="mix category-b">Card 2</div>
+        <div class="mix category-c">Card 3</div>
+        <div class="mix category-a">Card 4</div>
+        <div class="mix category-b">Card 5</div>
+        <div class="mix category-c">Card 6</div>
+        <div class="mix category-a">Card 7</div>
+        <div class="mix category-b">Card 8</div>
+        <div class="mix category-c">Card 9</div>
+        <div class="mix category-a">Card 10</div>
+        <div class="mix category-b">Card 11</div>
+        <div class="mix category-c">Card 12</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mixitup@3/dist/mixitup.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Initialize MixItUp
+        document.addEventListener("DOMContentLoaded", function () {
+            var mixer = mixitup('.container');
+        });
+
+    </script>
+</body>
+
+</html>
