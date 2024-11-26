@@ -15,17 +15,11 @@
             font-family: sans-serif;
         }
 
-        /* ---- input ---- */
-
-        input[type="text"] {
-            font-size: 20px;
-        }
-
         /* ---- button ---- */
 
         .button {
             display: inline-block;
-            padding: 0.5em 1.0em;
+            padding: 10px 18px;
             margin-bottom: 10px;
             background: #EEE;
             border: none;
@@ -81,7 +75,7 @@
             border-radius: 0 0.5em 0.5em 0;
         }
 
-        /* ---- grid ---- */
+        /* ---- isotope ---- */
 
         .grid {
             border: 1px solid #333;
@@ -145,35 +139,97 @@
             font-size: 12px;
         }
 
+        .element-item.alkali {
+            background: #F00;
+            background: hsl(0, 100%, 50%);
+        }
+
+        .element-item.alkaline-earth {
+            background: #F80;
+            background: hsl(36, 100%, 50%);
+        }
+
+        .element-item.lanthanoid {
+            background: #FF0;
+            background: hsl(72, 100%, 50%);
+        }
+
+        .element-item.actinoid {
+            background: #0F0;
+            background: hsl(108, 100%, 50%);
+        }
+
         .element-item.transition {
             background: #0F8;
             background: hsl(144, 100%, 50%);
+        }
+
+        .element-item.post-transition {
+            background: #0FF;
+            background: hsl(180, 100%, 50%);
+        }
+
+        .element-item.metalloid {
+            background: #08F;
+            background: hsl(216, 100%, 50%);
+        }
+
+        .element-item.diatomic {
+            background: #00F;
+            background: hsl(252, 100%, 50%);
+        }
+
+        .element-item.halogen {
+            background: #F0F;
+            background: hsl(288, 100%, 50%);
+        }
+
+        .element-item.noble-gas {
+            background: #F08;
+            background: hsl(324, 100%, 50%);
+        }
+
+
+        .filter-count {
+            font-size: 22px;
         }
     </style>
 </head>
 
 <body>
-
-    <h1>Isotope - filtering with search field and button filters</h1>
+    <h1>Isotope - filter count</h1>
 
     <p><input type="text" quicksearch="" placeholder="Search" /></p>
+    <button reset-filters>Reset Filters</button>
 
-    <div filters="" class="button-group">
+
+    <div class="button-group filters-button-group">
         <button class="button is-checked" data-filter="*">show all</button>
         <button class="button" data-filter=".metal">metal</button>
         <button class="button" data-filter=".transition">transition</button>
+        <button class="button" data-filter=".alkali, .alkaline-earth">alkali and alkaline-earth</button>
+        <button class="button" data-filter=":not(.transition)">not transition</button>
+        <button class="button" data-filter=".metal:not(.transition)">metal but not transition</button>
+        <button class="button" data-filter="numberGreaterThan50">number > 50</button>
+        <button class="button" data-filter="ium">name ends with &ndash;ium</button>
     </div>
 
+    <p class="filter-count"></p>
 
     <div class="grid">
-        <div class="element-item transition metal " data-category="transition">
+        <div class="element-item metal " data-category="transition">
             <h3 class="name">Mercury</h3>
             <p class="symbol">Hg</p>
             <p class="number">80</p>
             <p class="weight">200.59</p>
         </div>
-
-        <div class="element-item transition " data-category="post-transition">
+        <div class="element-item metalloid " data-category="metalloid">
+            <h3 class="name">Tellurium</h3>
+            <p class="symbol">Te</p>
+            <p class="number">52</p>
+            <p class="weight">127.6</p>
+        </div>
+        <div class="element-item post-transition metal " data-category="post-transition">
             <h3 class="name">Bismuth</h3>
             <p class="symbol">Bi</p>
             <p class="number">83</p>
@@ -185,22 +241,38 @@
             <p class="number">82</p>
             <p class="weight">207.2</p>
         </div>
+        <div class="element-item metal transition " data-category="transition">
+            <h3 class="name">Gold</h3>
+            <p class="symbol">Au</p>
+            <p class="number">79</p>
+            <p class="weight">196.967</p>
+        </div>
+        <div class="element-item alkali metal " data-category="alkali">
+            <h3 class="name">Potassium</h3>
+            <p class="symbol">K</p>
+            <p class="number">19</p>
+            <p class="weight">39.0983</p>
+        </div>
+        <div class="element-item alkali" data-category="alkali">
+            <h3 class="name">Sodium</h3>
+            <p class="symbol">Na</p>
+            <p class="number">11</p>
+            <p class="weight">22.99</p>
+        </div>
 
 
 
     </div>
 
 
-
-    <!-- isotop-filter-5-count-search.js webmsmahadi start  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 
+
     <script src="https://5gw2pk.csb.app/isotop-filter-5-count-search.js"></script>
-    <!-- isotop-filter-5-count-search.js webmsmahadi end  -->
 </body>
 
 </html>
